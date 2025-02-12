@@ -41,24 +41,31 @@ const drawTableRows = (users) => {
     const editButton = document.createElement("button");
     editButton.textContent = "עריכה";
     editButton.addEventListener("click", () => {
-        const newFirstName = prompt("הזן שם פרטי חדש:", user.firstName);
-        const newLastName = prompt("הזן שם משפחה חדש:", user.lastName);
-        const newEmail = prompt("הזן אימייל חדש:", user.email);
-        const newPassword = prompt("הזן סיסמה חדשה:", user.password);
-
-        if (newFirstName && newLastName && newEmail && newPassword) {
-            user.firstName = newFirstName;
-            user.lastName = newLastName;
-            user.email = newEmail;
-            user.password = newPassword;
-
-            User.updateUser(user);
-            drawTableRows(User.usersList);
-        } else {
-            alert("יש להכניס ערכים נכונים לכל השדות.");
-        }
-    });
-
+      const newFirstName = prompt("הזן שם פרטי חדש:", user.firstName);
+      const newLastName = prompt("הזן שם משפחה חדש:", user.lastName);
+      const newEmail = prompt("הזן אימייל חדש:", user.email);
+      const newPassword = prompt("הזן סיסמה חדשה:", user.password);
+  
+      const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+      if (!emailRegex.test(newEmail)) {
+          alert("כתובת המייל אינה תקינה.");
+          return;
+      }
+  
+      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+      if (!passwordRegex.test(newPassword)) {
+          alert("הסיסמה חייבת להכיל לפחות 8 תווים, אות גדולה, אות קטנה, מספר ותו מיוחד.");
+          return;
+      }
+  
+      user.firstName = newFirstName;
+      user.lastName = newLastName;
+      user.email = newEmail;
+      user.password = newPassword;
+  
+      User.updateUser(user);
+      drawTableRows(User.usersList);
+  });
     row.appendChild(logoutBtn);
     row.appendChild(deleteBtn);
     row.appendChild(editButton);

@@ -82,17 +82,29 @@ function checkAnswer() {
 
     document.getElementById('answerInput').value = ''; 
 }
-
 function endLevel() {
-    if (correctAnswers >= 7) {
+    // אם המשתמש הגיע לשלב 3 ועבר אותו, מציגים הודעה על סיום המשחק בלבד
+    if (currentLevel === 3 && correctAnswers >= 7) {
+        document.querySelector(".modal-text").textContent = `כל הכבוד !! עברת את כל השלבים!!`;
         document.querySelector(".modal").style.display = "block";
-        document.querySelector(".modal-text").textContent = ` כל הכבוד !! עברת לשלב הבא`;
+        
+        document.getElementById("title1").style.display = "none";
+        document.getElementById("answerInput").style.display = "none";
+        document.getElementById("checkButton").style.display = "none";
+        document.getElementById('problem').textContent = '';
 
+        return; // עצירת הפונקציה כדי למנוע הודעה נוספת
+    }
+
+    // אם המשתמש עבר לשלב הבא
+    if (correctAnswers >= 7) {
+        document.querySelector(".modal-text").textContent = `כל הכבוד !! עברת לשלב הבא`;
         currentLevel++;
     } else {
-        document.querySelector(".modal").style.display = "block";
         document.querySelector(".modal-text").textContent = "לא ענית נכון :( , נסה שוב כדי לעבור לשלב הבא";
     }
+
+    document.querySelector(".modal").style.display = "block";
 
     correctAnswers = 0;
     incorrectAnswers = 0;
@@ -103,17 +115,15 @@ function endLevel() {
 
 document.getElementById("close").addEventListener("click", () => {
     document.querySelector(".modal").style.display = "none";
-
-  });
-
+});
 
 function startNewLevel() {
     if (currentLevel > 3) {
+        document.querySelector(".modal-text").textContent = `כל הכבוד !! עברת את כל השלבים!!`;
         document.querySelector(".modal").style.display = "block";
-        document.querySelector(".modal-text").textContent = ` כל הכבוד !! עברת את כל השלבים!!`;
         document.getElementById("title1").style.display = "none";
-        document.getElementById("answerInput").style.display="none";
-        document.getElementById("checkButton").style.display="none";
+        document.getElementById("answerInput").style.display = "none";
+        document.getElementById("checkButton").style.display = "none";
         document.getElementById('problem').textContent = '';
         return;
     }
@@ -124,6 +134,7 @@ function startNewLevel() {
     document.getElementById('correctAnswers').textContent = `תשובות נכונות: 0`;
     document.getElementById('incorrectAnswers').textContent = `תשובות שגויות: 0`;
 }
+
 
 startNewLevel();
 document.getElementById('checkButton').addEventListener('click', checkAnswer);

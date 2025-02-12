@@ -68,6 +68,8 @@
         border-radius: 40px;
         font-weight: bold;
         font-size: 20px;
+        cursor: pointer;
+
 
     }
 
@@ -124,15 +126,18 @@
     opacity: 0.7; 
 }
 
-
-
-
-
 h3 {
-    font-size: 60px;
+    font-size: 70px;
     font-weight: bold;
     color: white;
     text-shadow: 2px 2px 3px black, -2px -2px 3px black, 2px -2px 3px black, -2px 2px 3px black;
+
+}
+p{
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 3px black;
 
 }
 
@@ -149,22 +154,20 @@ body{
 }
 .newCountry{
     position: absolute;
-    top: 170px;
-    left: 340px;
-    height: 500px;
-    width: 800px;
+    top: 90px;
+    left: 250px;
+    height: 610px;
+    width: 1000px;
     border: none;
     border-radius: 20px;
     text-align: center;
-    background-color: rgba(12, 12, 12, 0.763);
+   
 
     h3{
         margin-top: 100px;
         font-size: 130px;
     }
-    img{
-        height: 150px;
-    }
+ 
 }
 
 @media (max-width: 768px) {

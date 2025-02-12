@@ -12,6 +12,19 @@ export class User {
     isLogedIn = false;
 
     constructor(firstName, lastName, email, password) {
+
+        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        if (!emailRegex.test(email)) {
+            alert("כתובת המייל אינה תקינה.");
+            return;
+        }
+    
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+        if (!passwordRegex.test(password)) {
+            alert("הסיסמה חייבת להכיל לפחות 8 תווים, אות גדולה, אות קטנה ומספר.");
+            return;
+        }
+
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
