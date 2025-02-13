@@ -1,4 +1,3 @@
-@charset "UTF-8";
 * {
   margin: 0;
   padding: 0;
@@ -51,7 +50,6 @@ body {
 .browser {
   display: flex;
   width: 95%;
-  max-width: 1650px;
   height: 650px;
   border: 1px solid #ddd;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -110,7 +108,7 @@ body {
   border: none;
   border-radius: 3px;
 }
-.browser .settings-panel .setting button {
+.browser .settings-panel #add-text-btn {
   padding: 8px 10px;
   background-color: #40825c;
   border: none;
@@ -118,7 +116,7 @@ body {
   cursor: pointer;
   border-radius: 3px;
 }
-.browser .settings-panel .setting button:hover {
+.browser .settings-panel #add-text-btn:hover {
   background-color: #2f6044;
 }
 .browser .settings-panel .reset {
@@ -131,12 +129,35 @@ body {
   background-color: #702222;
 }
 
-/* התאמה למובייל */
 @media (max-width: 768px) {
+  .header {
+    position: absolute;
+    top: 210px;
+    left: 22px;
+    text-align: center;
+    margin: 10px 0;
+    z-index: 100;
+  }
+  .header:hover {
+    transform: scale(1.1);
+  }
+  .profile-img {
+    width: 40px;
+    height: auto;
+    border-radius: 50%;
+    box-shadow: 2px 30px 50px white;
+  }
+  .profile-name {
+    display: block;
+    margin-top: 5px;
+    font-size: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+  }
   body {
     display: block;
     height: 100vh;
-    width: 104%;
+    width: 105%;
   }
   .browser {
     display: flex;
@@ -170,9 +191,10 @@ body {
     top: 0%;
     left: 0%;
     width: 100%;
-    height: 220px;
+    height: 280px;
     padding: 0;
     border-radius: 3px;
+    gap: 5px;
   }
   .browser .settings-panel .setting {
     display: flex;
@@ -193,15 +215,14 @@ body {
     width: 250px;
     height: 42px;
   }
-  .browser .settings-panel .setting button {
-    padding: 8px 10px;
+  .browser .settings-panel #add-text-btn {
     background-color: #40825c;
     border: none;
     color: white;
     cursor: pointer;
     border-radius: 3px;
   }
-  .browser .settings-panel .setting button:hover {
+  .browser .settings-panel #add-text-btn:hover {
     background-color: #2f6044;
   }
   .browser .settings-panel .reset {

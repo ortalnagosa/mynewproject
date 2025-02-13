@@ -46,6 +46,7 @@
           <div class="setting">
           <label for="font-family">Font Family:</label>
           <select id="font-family">
+            <option></option>
             <option value="Arial">arial</option>
             <option value="Times New Roman">times New Roman</option>
             <option value="Courier New">courier New</option>
@@ -53,32 +54,25 @@
           </select>
           
           <div class="setting">
-            <label for="text-align">Text Align:</label>
-            <select id="text-align" >
-              <option value="left">ltr</option>
-              <option value="center">center</option>
-              <option value="right">rtl</option>
-            </select>
-          </div>
-          
-          <div class="setting">
             <label for="font-weight">font Weight:</label>
             <select id="font-weight">
+              <option></option>
               <option value="normal">normal</option>
               <option value="bold">bold</option>
               <option value="italic">italic</option>
+              <option value="underline">underline</option>
             </select>
           </div>
           
           <div class="setting">
             <label for="bg-image">Upload Background Image:</label>
-            <input type="file" id="bg-image" accept="image/*">
+            <input type="file" id="bg-image" accept="image/*" >
           </div>
 
 
           
-          <button id="add-text-btn">Add Text</button>
         </div>
+        <button id="add-text-btn">Add Text</button>
 
         <button id="reset-btn" class="reset">Reset</button>
 
