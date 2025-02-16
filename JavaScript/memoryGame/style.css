@@ -1,135 +1,208 @@
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f0f0f0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-  }
+  font-family: 'Poppins', sans-serif;
+  background-color: #121212;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  color: #ffffff;
+  flex-direction: column;
+  text-align: center;
+}
+
+
+
+.header {
+  position: absolute;
+  top: 6px;
+  left: 89%;
+  text-align: center;
+  margin: 10px 0;
+  z-index: 100;
+}
+
+.header:hover {
+  transform: scale(1.1);
+}
+
+.profile {
+  text-decoration: none;
+  color: white;
+}
+
+.profile-img {
+  width: 60px;
+  height: auto;
+  border-radius: 50%;
+  box-shadow: 0 0 15px #00ffcc;
+}
+
+.profile-name {
+  display: block;
+  margin-top: 5px;
+  font-size: 18px;
+  color: #ffffff;
+}
+
+h1 {
+  font-size: 2.5em;
+  color: #00ffcc;
+  text-shadow: 0 0 10px rgba(0, 255, 204, 0.8);
+  margin-bottom: 15px;
+}
+
+#game-container {
+  background: linear-gradient(145deg, #1e1e1e, #252525);
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 255, 204, 0.3);
+  padding: 20px;
+  width: 90%;
+  max-width: 500px;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(4, 100px);
+  grid-template-rows: repeat(4, 100px);
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.card {
+  width: 100px;
+  height: 100px;
+  background-color: #1e1e1e;
+  border: 2px solid #00ffcc;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 10px rgba(0, 255, 204, 0.2);
+}
+
+.card:hover {
+  box-shadow: 0 6px 15px rgba(0, 255, 204, 0.5);
+}
+
+.card .front {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  color: #00ffcc;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #252525;
+  border-radius: 10px;
+  backface-visibility: hidden;
+}
+
+.card .back {
+  background-color: #00ffcc;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+.card .back img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+#score1, #timer {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #00ffcc;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1.2em;
+  background: linear-gradient(90deg, #00ffcc, #00aaff);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s;
+  box-shadow: 0 4px 10px rgba(0, 255, 204, 0.4);
+}
+
+button:hover {
+  background: linear-gradient(90deg, #00aaff, #0088ff);
+  transform: scale(1.05);
+}
+
+@media (max-width: 600px) {
   .header {
     position: absolute;
-    top: 6px;
-    left: 89%;
+    top: 8px;
+    left: 75%;
     text-align: center;
-    margin: 10px 0;
+    margin: 5px 0;
     z-index: 100;
   }
-  
+
   .header:hover {
     transform: scale(1.1);
   }
-  .profile {
-    text-decoration: none;
-    color: white;
-  }
-  
+
   .profile-img {
-    width: 60px;
-    height: auto;
-    border-radius: 50%;
-    box-shadow: 2px 30px 50px white;
+    width: 50px;
   }
-  .profile-name {
-    display: block;
-    margin-top: 5px;
-    font-size: 18px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: black;
-  }
-  
-  
+
   #game-container {
-    text-align: center;
-    background: linear-gradient(145deg, #f9f9f9, #f0f0f0);
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    width: 500px;
+      width: 95%;
+      padding: 15px;
   }
-  
-  #score1, #score2, #timer, #turn {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-  }
-  
+
   .board {
-    display: grid;
-    grid-template-columns: repeat(4, 100px);
-    grid-template-rows: repeat(4, 100px);
-    gap: 10px;
-    margin-bottom: 15px;
-    margin-left: 30px;
+      grid-template-columns: repeat(3, 80px);
+      grid-template-rows: repeat(4, 80px);
+      gap: 8px;
   }
-  
+
   .card {
-    width: 100px;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #fff;
-    border: 3px solid #333;
-    font-size: 2em;
-    cursor: pointer;
-    transition: transform 0.2s ease, background-color 0.2s ease;
-    border-radius: 10px;
-    position: relative;
+      width: 80px;
+      height: 80px;
   }
-  
-  .card .front {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2em;
-  }
-  
-  .card .back {
-    background-color: #007BFF;
-    color: white;
-    font-size: 2em;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    transform: rotateY(180deg);
-    backface-visibility: hidden;
-  }
-  
-  .card.flipped .back {
-    transform: rotateY(0);
-  }
-  
-  .card .back img {
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-  }
-  
-  button {
-    padding: 10px 20px;
-    font-size: 1.2em;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
+
   h1 {
-    font-weight: 500;
-    color: #333;
-    font-size: 80px;
-    margin-bottom: 20px;
-    font-weight: bold;
+      font-size: 30px;
   }
-  
+
+  button {
+      font-size: 1em;
+      padding: 8px 15px;
+  }
+}
+
+/* 📱 התאמה לטאבלטים */
+@media (max-width: 900px) and (min-width: 600px) {
+  .board {
+      grid-template-columns: repeat(4, 90px);
+      grid-template-rows: repeat(4, 90px);
+      gap: 10px;
+  }
+
+  .card {
+      width: 90px;
+      height: 90px;
+  }
+}

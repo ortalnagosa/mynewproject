@@ -1,54 +1,35 @@
 const resetButton = document.getElementById('reset-button');
 const board = document.getElementById('board');
-const scoreDisplay1 = document.getElementById('score1');
-const scoreDisplay2 = document.getElementById('score2');
+const scoreDisplay = document.getElementById('score1');
 const timerDisplay = document.getElementById('timer');
-const turnDisplay = document.getElementById('turn');
 let cards = [];
 let flippedCards = [];
 let matchedCards = 0;
-let currentRound = 1;
-let playerTurn = 1;
-let player1Name = '';
-let player2Name = '';
-let score1 = 0;
-let score2 = 0;
-let timer = 60;
+let playerName = '';
+let timer = 0;
 let interval;
 let gameOver = false;
 
 const pokemonImages = [
-  'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png', // Bulbasaur
-  'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png', // Ivysaur
-  'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png', // Venusaur
-  'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png', // Charmander
-  'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/5.png', // Charmeleon
-  'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png', // Charizard
-  'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png', // Squirtle
-  'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/8.png', // Wartortle
+  'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
+  'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png',
+  'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png',
+  'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png',
+  'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/5.png',
+  'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png',
+  'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png',
+  'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/8.png',
 ];
 
-function promptForPlayerNames() {
-  player1Name = prompt('הקלד שם שחקן');
-  player2Name = prompt('הקלד שם שחקן יריב');
-  if (!player1Name || !player2Name) {
-    alert('יש למלא את כל שמות השחקנים');
-    promptForPlayerNames();  
+function promptForPlayerName() {
+  playerName = prompt('הקלד את שמך');
+  if (!playerName) {
+    alert('יש למלא את שמך');
+    promptForPlayerName();  
   } else {
-    startGame();
+    scoreDisplay.textContent = `שחקן: ${playerName}`;
+    resetGame();
   }
-}
-
-function startGame() {
-  score1 = 0;
-  score2 = 0;
-  scoreDisplay1.textContent = `${player1Name} Score: ${score1}`;
-  scoreDisplay2.textContent = `${player2Name} Score: ${score2}`;
-  currentRound = 1;
-  playerTurn = 1;
-  matchedCards = 0;
-  turnDisplay.textContent = `${player1Name}'s Turn`;
-  resetRound();
 }
 
 function shuffleCards() {
@@ -103,73 +84,51 @@ function checkMatch() {
 
   if (firstImage === secondImage) {
     matchedCards += 2;
-    if (playerTurn === 1) {
-      score1 += 10;
-      scoreDisplay1.textContent = `${player1Name} Score: ${score1}`;
-    } else {
-      score2 += 10;
-      scoreDisplay2.textContent = `${player2Name} Score: ${score2}`;
-    }
-
     if (matchedCards === pokemonImages.length * 2) {
       setTimeout(() => {
-        if (score1 > score2) {
-          alert(`${player1Name} wins!`);
-        } else if (score2 > score1) {
-          alert(`${player2Name} wins!`);
-        } else {
-          alert('It\'s a draw!');
-        }
+        const minutes = Math.floor(timer / 60);
+        const seconds = timer % 60;
+        alert(`כל הכבודד!!, ${playerName}, סיימת את המשחק בזמן של ${minutes} דקות ו-${seconds} שניות!`);
+        gameOver = true;
+        clearInterval(interval);
       }, 100);
-      gameOver = true;
     }
-
     flippedCards = [];
   } else {
     setTimeout(() => {
       firstCard.classList.remove('flipped');
       secondCard.classList.remove('flipped');
       flippedCards = [];
-      playerTurn = playerTurn === 1 ? 2 : 1; // Change turn
-      turnDisplay.textContent = `${playerTurn === 1 ? player1Name : player2Name}'s Turn`; // Update who is playing
-      resetTimer();
     }, 1000);
   }
 }
 
 function startTimer() {
+  clearInterval(interval);
+  timer = 0;
+  updateTimerDisplay();
   interval = setInterval(() => {
-    if (timer <= 0) {
-      clearInterval(interval);
-      setTimeout(() => {
-        playerTurn = playerTurn === 1 ? 2 : 1; // Switch turn
-        turnDisplay.textContent = `${playerTurn === 1 ? player1Name : player2Name}'s Turn`;
-        resetTimer();
-      }, 1000);
-    } else {
-      timer--;
-      timerDisplay.textContent = `Time: ${timer}s`;
-    }
+    timer++;
+    updateTimerDisplay();
   }, 1000);
 }
 
-function resetTimer() {
-  timer = 60;
-  timerDisplay.textContent = `Time: ${timer}s`;
-  startTimer();
+function updateTimerDisplay() {
+  const minutes = Math.floor(timer / 60);
+  const seconds = timer % 60;
+  timerDisplay.textContent = `זמן: ${minutes} דקות ו-${seconds} שניות`;
 }
 
-function resetRound() {
+function resetGame() {
   matchedCards = 0;
   flippedCards = [];
+  gameOver = false;
   createCards();
   startTimer();
 }
 
 resetButton.addEventListener('click', () => {
-  gameOver = false;
-  promptForPlayerNames(); // Start game after getting player names
+  promptForPlayerName();
 });
 
-// התחלת המשחק
-promptForPlayerNames();
+promptForPlayerName();
