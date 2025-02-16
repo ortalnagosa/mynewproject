@@ -68,14 +68,19 @@ addTextBtn.addEventListener("click", () => {
 bgImageInput.addEventListener("change", (event) => {
   const file = event.target.files[0];
   if (file) {
+    const placeholder = document.querySelector(".placeholder");
+    if (placeholder) placeholder.remove();
     const reader = new FileReader();
     reader.onload = function (e) {
       previewArea.style.backgroundImage = `url(${e.target.result})`;
       previewArea.style.backgroundSize = "cover";
       previewArea.style.backgroundPosition = "center";
+      
     };
     reader.readAsDataURL(file);
   }
+  
+
 });
 
 resetBtn.addEventListener("click", () => {
