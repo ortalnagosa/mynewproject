@@ -150,22 +150,7 @@ button:hover {
 }
 
 @media (max-width: 600px) {
-  .header {
-    position: absolute;
-    top: 8px;
-    left: 75%;
-    text-align: center;
-    margin: 5px 0;
-    z-index: 100;
-  }
-
-  .header:hover {
-    transform: scale(1.1);
-  }
-
-  .profile-img {
-    width: 50px;
-  }
+ 
 
   #game-container {
       width: 95%;
