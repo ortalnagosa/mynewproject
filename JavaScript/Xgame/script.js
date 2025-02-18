@@ -13,7 +13,7 @@ resetButton.addEventListener('click', resetGame);
 
 function handleCellClick(event) {
   const index = event.target.getAttribute('data-index');
-  if (board[index] || gameOver) return; // Ignore if cell is already filled or game is over
+  if (board[index] || gameOver) return;
   
   board[index] = currentPlayer;
   event.target.textContent = currentPlayer;
@@ -43,7 +43,7 @@ function checkWinner() {
       return true;
     }
   }
-  return board.every(cell => cell !== ''); // Check if board is full (draw)
+  return board.every(cell => cell !== ''); 
 }
 
 function resetGame() {
