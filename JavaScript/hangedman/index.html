@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>איש תלוי</title>
+
+</head>
+<body>
+    <!DOCTYPE html>
+    <html lang="he">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>איש תלוי</title>
+    </head>
+    <body>
+        <div class="container">
+        <h1> איש תלוי</h1>
+            <div class="categories">
+        <label for="category">בחר קטגוריה:</label>
+        <select id="category">
+            <option value="fruits">פירות וירקות</option>
+            <option value="animals">חיות</option>
+            <option value="cars">סוגי מכוניות</option>
+        </select>
+        <button onclick="startGame()">התחל משחק</button>
+    </div>
+        <canvas id="hangmanCanvas" width="300" height="300"></canvas>
+        
+        <div class="word" id="word-display">_ _ _ _ _</div>
+    
+        <div class="letters" id="letters-container"></div>
+
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>

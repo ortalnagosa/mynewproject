@@ -12,7 +12,7 @@ cells.forEach(cell => {
 resetButton.addEventListener('click', resetGame);
 
 function handleCellClick(event) {
-  if (currentPlayer !== 'X' || gameOver) return; // רק המשתמש יכול לשחק
+  if (currentPlayer !== 'X' || gameOver) return;
 
   const index = event.target.getAttribute('data-index');
   if (board[index]) return;
