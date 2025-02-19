@@ -57,10 +57,10 @@ function drawHangman(stage) {
 function checkGameStatus() {
     if (!document.getElementById("word-display").textContent.includes("_")) {
         disableLetterButtons();
-        setTimeout(() => alert("ניצחת! 🎉"), 200);
+        setTimeout(() => alert("כל-הכבוד! 🎉"), 200);
     } else if (wrongGuesses >= 7) {
         disableLetterButtons();
-        setTimeout(() => alert(`הפסדת! המילה הייתה: ${selectedWord}`), 200);
+        setTimeout(() => alert(`אוי טעית! המילה הייתה: ${selectedWord}`), 200);
     }
 }
 
